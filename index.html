@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Huduma TZ — Huduma za Mtandaoni Tanzania</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --emerald: #00A86B;
+    --emerald-dark: #007A4D;
+    --emerald-light: #00D486;
+    --gold: #F4B942;
+    --gold-dark: #D4941A;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --navy-soft: #1A3356;
+    --white: #FFFFFF;
+    --off-white: #F0F4F0;
+    --text-light: #A8C4B0;
+    --text-muted: #6B8F7A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,168,107,0.15);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+
+  .nav-logo .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; font-weight: 900; color: white;
+    box-shadow: 0 4px 15px rgba(0,168,107,0.4);
+  }
+
+  .nav-logo .logo-text {
+    font-size: 1.2rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--white), var(--emerald-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-light); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--emerald-light); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    color: white; padding: 0.6rem 1.5rem;
+    border-radius: 50px; font-weight: 600;
+    text-decoration: none; font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0,168,107,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0,168,107,0.5);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,168,107,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(244,185,66,0.06) 0%, transparent 60%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 100%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(0,168,107,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,168,107,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 650px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,168,107,0.15);
+    border: 1px solid rgba(0,168,107,0.3);
+    border-radius: 50px; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--emerald-light);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 7px; height: 7px;
+    background: var(--emerald-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    font-size: 1.1rem; color: var(--text-light);
+    line-height: 1.7; margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    color: white; padding: 0.9rem 2rem;
+    border-radius: 50px; font-weight: 700; font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 25px rgba(0,168,107,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(0,168,107,0.6);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white; padding: 0.9rem 2rem;
+    border-radius: 50px; font-weight: 600; font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(0,168,107,0.1);
+    border-color: rgba(0,168,107,0.4);
+  }
+
+  .hero-stats {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    z-index: 1;
+    display: flex; flex-direction: column; gap: 1.2rem;
+    animation: fadeLeft 0.9s 0.5s ease both;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,168,107,0.2);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    min-width: 140px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateX(-5px);
+    border-color: rgba(0,168,107,0.5);
+  }
+
+  .stat-card .num {
+    font-size: 2rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .stat-card .label {
+    font-size: 0.75rem; color: var(--text-light);
+    font-weight: 500; margin-top: 0.2rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--emerald-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--text-light); font-size: 1.05rem;
+    line-height: 1.7; max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--navy-mid); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,168,107,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--emerald), var(--emerald-light));
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,168,107,0.35);
+    background: rgba(0,168,107,0.05);
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, rgba(0,168,107,0.2), rgba(0,168,107,0.05));
+    border: 1px solid rgba(0,168,107,0.25);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    font-size: 0.875rem; color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .service-card .price-tag {
+    display: inline-block; margin-top: 1rem;
+    background: rgba(244,185,66,0.1);
+    border: 1px solid rgba(244,185,66,0.25);
+    color: var(--gold);
+    font-size: 0.78rem; font-weight: 700;
+    padding: 0.3rem 0.8rem; border-radius: 50px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-it-works { background: var(--navy); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  .step-number {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 900;
+    margin: 0 auto 1.2rem;
+    box-shadow: 0 6px 20px rgba(0,168,107,0.35);
+  }
+
+  .step h3 {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.875rem; color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── WHY US ── */
+  .why-us { background: var(--navy-mid); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .why-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .why-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+
+  .why-check {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(0,168,107,0.15);
+    border: 1px solid rgba(0,168,107,0.3);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .why-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .why-item p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+
+  .why-visual {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,168,107,0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .why-visual .big-emoji { font-size: 5rem; margin-bottom: 1rem; }
+  .why-visual h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .why-visual p { font-size: 0.875rem; color: var(--text-light); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--navy); }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,168,107,0.12);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .contact-item:hover { border-color: rgba(0,168,107,0.35); }
+
+  .contact-item .icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(0,168,107,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .contact-item h4 { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+  .contact-item p { font-size: 0.95rem; font-weight: 600; }
+
+  .contact-form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,168,107,0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+  }
+
+  .contact-form h3 {
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label {
+    display: block; font-size: 0.8rem;
+    font-weight: 600; color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--emerald);
+  }
+
+  .form-group select option { background: var(--navy-mid); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    color: white; padding: 1rem;
+    border: none; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 6px 25px rgba(0,168,107,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(0,168,107,0.6);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(0,168,107,0.1);
+    padding: 3rem 5% 2rem;
+  }
+
+  .footer-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 2rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-brand .logo-text {
+    font-size: 1.3rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--white), var(--emerald-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem; color: var(--text-muted); max-width: 260px; line-height: 1.6;
+  }
+
+  .footer-links h4 {
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--text-light); margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.875rem; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--emerald-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
+
+  .tz-flag {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 6px 25px rgba(37,211,102,0.5);
+    text-decoration: none;
+    animation: bounce 2s infinite;
+    transition: transform 0.2s;
+  }
+
+  .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-stats { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 4%; }
+    .hero { padding: 7rem 4% 4rem; }
+    .hero-buttons { flex-direction: column; }
+    .btn-primary, .btn-secondary { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">E</div>
+    <div class="logo-text">E-Huduma TZ</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#huduma">Huduma / Services</a></li>
+    <li><a href="#jinsi">Jinsi Inavyofanya Kazi</a></li>
+    <li><a href="#kuhusu">Kuhusu Sisi</a></li>
+    <li><a href="#wasiliana">Wasiliana</a></li>
+  </ul>
+  <a href="#wasiliana" class="nav-cta">Omba Huduma →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Huduma Zinapatikana Sasa Hivi · Services Available Now
+    </div>
+    <h1>
+      Huduma za Serikali<br>
+      <span class="accent">Mkono Wako wa Dijitali</span><br>
+      Tanzania
+    </h1>
+    <p>
+      Hatufanyi kazi za kawaida — tunakufanyia maombi yote ya mtandaoni haraka na kwa uaminifu. BRELA, NIDA, HESLB, TCU na zaidi. Uko wapi popote Tanzania — tunakusaidia.
+      <br><br>
+      <em style="color: #A8C4B0; font-size:0.95rem;">Your trusted digital assistant for all Tanzanian government & institutional online services.</em>
+    </p>
+    <div class="hero-buttons">
+      <a href="#wasiliana" class="btn-primary">🚀 Omba Huduma Sasa</a>
+      <a href="#huduma" class="btn-secondary">📋 Angalia Huduma Zote</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="num">24/7</div>
+      <div class="label">Tunapatikana Daima</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">30+</div>
+      <div class="label">Aina za Huduma</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">🇹🇿</div>
+      <div class="label">Tanzania Nzima</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="huduma">
+  <div class="section-label">Huduma Zetu / Our Services</div>
+  <h2 class="section-title">Tunakusaidia na Nini?</h2>
+  <p class="section-sub">Orodha ya huduma zetu za mtandaoni — tunafanya kwa niaba yako haraka na kwa uaminifu kamili.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🪪</div>
+      <h3>Vitambulisho & Usajili (NIDA / RITA)</h3>
+      <p>Maombi ya Kitambulisho cha Taifa (NIDA), cheti cha kuzaliwa, cheti cha ndoa, na hati nyingine za RITA.</p>
+      <span class="price-tag">Tsh 5,000 – 15,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3>Usajili wa Biashara (BRELA / TRA)</h3>
+      <p>Usajili wa jina la biashara, TIN number, VAT, na kampuni kupitia BRELA na TRA.</p>
+      <span class="price-tag">Tsh 15,000 – 50,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Maombi ya Chuo (NACTE / TCU)</h3>
+      <p>Maombi ya certificate, diploma na degree kupitia NACTE na TCU kwa wanafunzi wote Tanzania.</p>
+      <span class="price-tag">Tsh 10,000 – 25,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">💰</div>
+      <h3>Mkopo wa Wanafunzi (HESLB)</h3>
+      <p>Maombi ya mkopo wa elimu ya juu kupitia HESLB — tunaongoza hatua zote hadi kukamilika.</p>
+      <span class="price-tag">Tsh 15,000 – 30,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏥</div>
+      <h3>Bima ya Afya (NHIF)</h3>
+      <p>Usajili wa NHIF kwa watu binafsi, familia, na wafanyakazi. Tunasaidia pia mabadiliko ya taarifa.</p>
+      <span class="price-tag">Tsh 5,000 – 12,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <h3>Passport & Visa</h3>
+      <p>Maombi ya passport ya Tanzania na visa za nchi mbalimbali kupitia mifumo ya mtandaoni.</p>
+      <span class="price-tag">Tsh 20,000 – 50,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">👷</div>
+      <h3>NSSF & WCF</h3>
+      <p>Usajili wa mfanyakazi NSSF na WCF. Maombi ya malipo ya faida na huduma nyingine za hifadhi jamii.</p>
+      <span class="price-tag">Tsh 5,000 – 15,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📝</div>
+      <h3>CV & Cover Letter</h3>
+      <p>Tunaandika CV ya kitaalamu na barua za maombi ya kazi zinazovutia waajiri.</p>
+      <span class="price-tag">Tsh 5,000 – 15,000</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Huduma Nyingine za Mtandaoni</h3>
+      <p>SUMATRA (leseni ya gari/udereva), SIDO, UTUMISHI, ardhi, na huduma nyingine za serikali.</p>
+      <span class="price-tag">Tsh 5,000 – 40,000</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="jinsi">
+  <div class="section-label">Mchakato / How It Works</div>
+  <h2 class="section-title">Jinsi Inavyofanya Kazi</h2>
+  <p class="section-sub">Mchakato rahisi wa hatua 4 — uko wapi popote Tanzania, tunakusaidia.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Wasiliana Nasi</h3>
+      <p>Piga simu, tuma WhatsApp, au jaza fomu yetu mtandaoni. Tuambie unahitaji huduma gani.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Tuma Nyaraka</h3>
+      <p>Tutakuambia nyaraka unazohitaji. Unaweza kutuma picha/scan kupitia WhatsApp au email.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Lipa & Tunaanza</h3>
+      <p>Lipa ada ndogo kupitia M-Pesa, Tigo Pesa, au njia nyingine. Kazi inaanza mara moja!</p>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Pokea Matokeo</h3>
+      <p>Tutakutumia hati yako iliyokamilika haraka iwezekanavyo. Hakuna stress, hakuna foleni!</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="kuhusu">
+  <div class="section-label">Kwa Nini Sisi / Why Choose Us</div>
+  <h2 class="section-title">Tofauti Yetu ni Nini?</h2>
+
+  <div class="why-grid">
+    <div class="why-list">
+      <div class="why-item">
+        <div class="why-check">⚡</div>
+        <div>
+          <h4>Huduma ya Haraka</h4>
+          <p>Tunamaliza kazi nyingi ndani ya saa 24–48. Hakuna ucheleweshaji usio na sababu.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">🔒</div>
+        <div>
+          <h4>Usalama wa Taarifa Zako</h4>
+          <p>Taarifa zako za kibinafsi zinashughulikiwa kwa siri kabisa. Tunazilinda kama za kwetu.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">🌍</div>
+        <div>
+          <h4>Popote Tanzania — na Nje</h4>
+          <p>Uko Dodoma, Mwanza, Songea, au hata unaishi nje ya Tanzania — tunakusaidia.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">💬</div>
+        <div>
+          <h4>Mawasiliano ya Mara kwa Mara</h4>
+          <p>Tunakuarifu kila hatua. Hujabaki gizani — unajua kazi yako iko wapi wakati wote.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-check">💵</div>
+        <div>
+          <h4>Bei Nafuu na Wazi</h4>
+          <p>Hakuna ada za siri. Bei tunakuambia mapema — unalipa tu kile ulichokubaliana.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual">
+      <div class="big-emoji">🇹🇿</div>
+      <h3>Watanzania kwa Watanzania</h3>
+      <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.7;">
+        Tunajua changamoto za kupata huduma za serikali mtandaoni. Ndio maana tumejitoa kukusaidia — kwa lugha yako, kwa wakati wako, popote ulipo.
+        <br><br>
+        <em>We understand the challenges of accessing government services online in Tanzania — that's why we're here for you, 24/7.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="wasiliana">
+  <div class="section-label">Wasiliana Nasi / Contact Us</div>
+  <h2 class="section-title">Anza Leo Hii!</h2>
+  <p class="section-sub">Tuma ujumbe au jaza fomu hapa chini — tutajibu haraka iwezekanavyo.</p>
+
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="icon">📱</div>
+        <div>
+          <h4>WhatsApp / Simu</h4>
+          <p>+255 XXX XXX XXX</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <div>
+          <h4>Barua Pepe / Email</h4>
+          <p>info@ehudumatz.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <div>
+          <h4>Makao Makuu</h4>
+          <p>Dar es Salaam, Tanzania</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🕐</div>
+        <div>
+          <h4>Masaa ya Kazi / Working Hours</h4>
+          <p>Jumatatu – Jumamosi: 8:00 – 20:00</p>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div style="background: rgba(244,185,66,0.05); border: 1px solid rgba(244,185,66,0.2); border-radius: 14px; padding: 1.2rem 1.5rem;">
+        <h4 style="color: var(--gold); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.8rem;">💳 Njia za Malipo / Payment Methods</h4>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <span style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;">M-Pesa</span>
+          <span style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;">Tigo Pesa</span>
+          <span style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;">Airtel Money</span>
+          <span style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;">Benki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>📋 Omba Huduma / Request Service</h3>
+      <div class="form-group">
+        <label>Jina Lako Kamili / Full Name *</label>
+        <input type="text" placeholder="Mfano: John Mwamba">
+      </div>
+      <div class="form-group">
+        <label>Nambari ya Simu / Phone Number *</label>
+        <input type="tel" placeholder="+255 XXX XXX XXX">
+      </div>
+      <div class="form-group">
+        <label>Huduma Unayohitaji / Service Needed *</label>
+        <select>
+          <option value="">-- Chagua Huduma --</option>
+          <option>NIDA - Kitambulisho cha Taifa</option>
+          <option>RITA - Cheti cha Kuzaliwa</option>
+          <option>BRELA - Usajili wa Biashara</option>
+          <option>TRA - TIN Number</option>
+          <option>HESLB - Mkopo wa Wanafunzi</option>
+          <option>TCU / NACTE - Maombi ya Chuo</option>
+          <option>NHIF - Bima ya Afya</option>
+          <option>Passport</option>
+          <option>NSSF / WCF</option>
+          <option>CV & Cover Letter</option>
+          <option>Huduma Nyingine</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Maelezo Zaidi / Additional Details</label>
+        <textarea placeholder="Eleza zaidi kuhusu unahitaji nini..."></textarea>
+      </div>
+      <button class="btn-submit">🚀 Tuma Ombi / Submit Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">E-Huduma TZ</div>
+      <p>Huduma za Mtandaoni Tanzania — tunakusaidia kupata huduma za serikali na taasisi kwa urahisi na haraka.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Huduma</h4>
+      <ul>
+        <li><a href="#huduma">NIDA & RITA</a></li>
+        <li><a href="#huduma">BRELA & TRA</a></li>
+        <li><a href="#huduma">HESLB & TCU</a></li>
+        <li><a href="#huduma">NHIF & NSSF</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Viungo</h4>
+      <ul>
+        <li><a href="#jinsi">Jinsi Inavyofanya Kazi</a></li>
+        <li><a href="#kuhusu">Kuhusu Sisi</a></li>
+        <li><a href="#wasiliana">Wasiliana Nasi</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 E-Huduma TZ. Haki zote zimehifadhiwa.</p>
+    <div class="tz-flag">🇹🇿 Made in Tanzania with ❤️</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/255XXXXXXXXX" class="whatsapp-float" target="_blank" title="Piga WhatsApp">
+  💬
+</a>
+
+</body>
+</html>
