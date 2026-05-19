@@ -953,46 +953,102 @@
 
     <div class="contact-form">
       <h3>📋 Omba Huduma / Request Service</h3>
-      <div class="form-group">
-        <label>Jina Lako Kamili / Full Name *</label>
-        <input type="text" placeholder="Mfano: John Mwamba">
+
+      <!-- SUCCESS MESSAGE (hidden by default) -->
+      <div id="successMsg" style="display:none; background:rgba(0,168,107,0.15); border:1px solid rgba(0,168,107,0.4); border-radius:14px; padding:1.5rem; text-align:center; margin-bottom:1rem;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">✅</div>
+        <h4 style="color:var(--emerald-light); margin-bottom:0.3rem;">Ombi Limetumwa!</h4>
+        <p style="color:var(--text-light); font-size:0.875rem;">Tutawasiliana nawe hivi karibuni. Asante!</p>
       </div>
-      <div class="form-group">
-        <label>Nambari ya Simu / Phone Number *</label>
-        <input type="tel" placeholder="+255 XXX XXX XXX">
+
+      <form id="contactForm" action="https://formspree.io/f/mgoqvnrz" method="POST">
+
+        <div class="form-group">
+          <label>Jina Lako Kamili / Full Name *</label>
+          <input type="text" name="jina" placeholder="Mfano: John Mwamba" required>
+        </div>
+        <div class="form-group">
+          <label>Nambari ya Simu / Phone Number *</label>
+          <input type="tel" name="simu" placeholder="+255 XXX XXX XXX" required>
+        </div>
+        <div class="form-group">
+          <label>Huduma Unayohitaji / Service Needed *</label>
+          <select name="huduma" required>
+            <option value="">-- Chagua Huduma --</option>
+            <option>NIDA - Kitambulisho cha Taifa</option>
+            <option>RITA - Cheti cha Kuzaliwa</option>
+            <option>BRELA - Usajili wa Biashara</option>
+            <option>TRA - TIN Number</option>
+            <option>HESLB - Mkopo wa Wanafunzi</option>
+            <option>TCU / NACTE - Maombi ya Chuo</option>
+            <option>NHIF - Bima ya Afya</option>
+            <option>Passport</option>
+            <option>NSSF / WCF</option>
+            <option disabled>── 💼 Kazi & Ajira ──</option>
+            <option>CV ya Kitaalamu</option>
+            <option>Barua ya Kazi (Cover Letter)</option>
+            <option>Ajira Portal — Kuunda Account</option>
+            <option>Kuomba Kazi — Ajira Portal</option>
+            <option>LinkedIn Profile</option>
+            <option>Pakiti Kamili ya Kazi (CV + Cover Letter + Maombi)</option>
+            <option disabled>── 🏥 Afya & Internship ──</option>
+            <option>MD Internship — Maombi Kamili (Daktari)</option>
+            <option>MD Internship — Arifa ya Dirisha tu</option>
+            <option>MD Internship — Pakiti Kamili</option>
+            <option>Huduma Nyingine</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Maelezo Zaidi / Additional Details</label>
+          <textarea name="maelezo" placeholder="Eleza zaidi kuhusu unahitaji nini..."></textarea>
+        </div>
+
+        <!-- Hidden field: source -->
+        <input type="hidden" name="_subject" value="Ombi Jipya la Huduma — E-Huduma TZ">
+        <input type="hidden" name="_next" value="">
+
+        <button type="submit" class="btn-submit" id="submitBtn">🚀 Tuma Ombi / Submit Request</button>
+      </form>
+
+      <!-- WHATSAPP DIRECT BUTTON -->
+      <div style="margin-top:1rem; text-align:center;">
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.6rem;">— au wasiliana nasi moja kwa moja —</p>
+        <a href="https://wa.me/255XXXXXXXXX?text=Habari%2C%20nataka%20huduma%20ya%20E-Huduma%20TZ" 
+           target="_blank"
+           style="display:inline-flex; align-items:center; gap:0.5rem; background:#25D366; color:white; padding:0.75rem 1.8rem; border-radius:50px; font-weight:700; font-size:0.95rem; text-decoration:none; box-shadow:0 4px 15px rgba(37,211,102,0.4); transition:transform 0.2s;"
+           onmouseover="this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+          💬 Piga WhatsApp Sasa
+        </a>
       </div>
-      <div class="form-group">
-        <label>Huduma Unayohitaji / Service Needed *</label>
-        <select>
-          <option value="">-- Chagua Huduma --</option>
-          <option>NIDA - Kitambulisho cha Taifa</option>
-          <option>RITA - Cheti cha Kuzaliwa</option>
-          <option>BRELA - Usajili wa Biashara</option>
-          <option>TRA - TIN Number</option>
-          <option>HESLB - Mkopo wa Wanafunzi</option>
-          <option>TCU / NACTE - Maombi ya Chuo</option>
-          <option>NHIF - Bima ya Afya</option>
-          <option>Passport</option>
-          <option>NSSF / WCF</option>
-          <option>CV ya Kitaalamu</option>
-          <option>Barua ya Kazi (Cover Letter)</option>
-          <option>Ajira Portal — Kuunda Account</option>
-          <option>Kuomba Kazi — Ajira Portal</option>
-          <option>LinkedIn Profile</option>
-          <option>Pakiti Kamili ya Kazi (CV + Cover Letter + Maombi)</option>
-          <option disabled>── 🏥 Afya & Internship ──</option>
-          <option>MD Internship — Maombi Kamili (Daktari)</option>
-          <option>MD Internship — Arifa ya Dirisha tu</option>
-          <option>MD Internship — Pakiti Kamili</option>
-          <option>Huduma Nyingine</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Maelezo Zaidi / Additional Details</label>
-        <textarea placeholder="Eleza zaidi kuhusu unahitaji nini..."></textarea>
-      </div>
-      <button class="btn-submit">🚀 Tuma Ombi / Submit Request</button>
     </div>
+
+    <script>
+      const form = document.getElementById('contactForm');
+      const successMsg = document.getElementById('successMsg');
+      const submitBtn = document.getElementById('submitBtn');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        submitBtn.textContent = '⏳ Inatuma...';
+        submitBtn.disabled = true;
+
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          submitBtn.textContent = '❌ Hitilafu — Jaribu Tena';
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
   </div>
 </section>
 
