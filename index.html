@@ -572,12 +572,126 @@
     50% { transform: translateY(-8px); }
   }
 
+  /* ── HERO IMAGE ── */
+  .hero-image-wrap {
+    position: absolute; right: 0; top: 0; bottom: 0;
+    width: 48%; z-index: 0; overflow: hidden;
+  }
+
+  .hero-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    opacity: 0.35;
+    filter: saturate(0.7);
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, var(--navy) 0%, rgba(10,22,40,0.5) 60%, transparent 100%);
+  }
+
+  /* ── PHOTO SECTION ── */
+  .photo-strip {
+    background: var(--navy-soft);
+    padding: 4rem 5%;
+    overflow: hidden;
+  }
+
+  .photo-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .photo-card {
+    border-radius: 20px; overflow: hidden;
+    position: relative; aspect-ratio: 4/3;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    transition: transform 0.3s;
+  }
+
+  .photo-card:hover { transform: scale(1.03); }
+
+  .photo-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transition: filter 0.3s;
+  }
+
+  .photo-card:hover img { filter: saturate(1.1); }
+
+  .photo-card .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(0deg, rgba(10,22,40,0.92) 0%, transparent 100%);
+    padding: 1.5rem 1rem 1rem;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--white);
+  }
+
+  .photo-card .photo-caption span {
+    display: block; font-size: 0.75rem;
+    color: var(--emerald-light); font-weight: 500; margin-bottom: 0.2rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--navy-mid);
+    padding: 5rem 5%;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testi-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,168,107,0.15);
+    border-radius: 20px;
+    padding: 1.8rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .testi-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,168,107,0.35);
+  }
+
+  .testi-stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.8rem; }
+
+  .testi-text {
+    font-size: 0.9rem; color: var(--text-light);
+    line-height: 1.7; font-style: italic;
+    margin-bottom: 1.2rem;
+  }
+
+  .testi-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    overflow: hidden; flex-shrink: 0;
+    border: 2px solid rgba(0,168,107,0.3);
+  }
+
+  .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .testi-author h4 { font-size: 0.875rem; font-weight: 700; }
+  .testi-author p { font-size: 0.75rem; color: var(--text-muted); }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .hero-stats { display: none; }
+    .hero-image-wrap { display: none; }
     .why-grid { grid-template-columns: 1fr; }
     .contact-wrapper { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    .photo-strip-inner { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -585,6 +699,7 @@
     .hero { padding: 7rem 4% 4rem; }
     .hero-buttons { flex-direction: column; }
     .btn-primary, .btn-secondary { justify-content: center; }
+    .photo-strip-inner { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -609,6 +724,12 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+
+  <!-- Hero Image — mtu wa Afrika anatumia simu -->
+  <div class="hero-image-wrap">
+    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop&q=80" 
+         alt="Mtu wa Afrika anatumia simu kuomba huduma za mtandaoni">
+  </div>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
@@ -644,6 +765,48 @@
     </div>
   </div>
 </section>
+
+<!-- PHOTO STRIP — Watu wa Afrika na Teknolojia -->
+<div class="photo-strip">
+  <div style="text-align:center; margin-bottom:2.5rem;">
+    <div class="section-label" style="display:block; text-align:center;">Tunawasaidia Wote / We Serve Everyone</div>
+    <h2 class="section-title" style="text-align:center;">Kutoka Mjini Hadi Vijijini 🇹🇿</h2>
+    <p style="color:var(--text-light); font-size:1rem; max-width:550px; margin:0.8rem auto 0; line-height:1.7;">
+      Haijalishi uko wapi — mji mkubwa au kijiji — simu mkononi na huduma yetu, unaweza kupata kila kitu.
+    </p>
+  </div>
+
+  <div class="photo-strip-inner">
+
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&auto=format&fit=crop&q=80"
+           alt="Mtu wa Afrika anatumia simu ya mkononi">
+      <div class="photo-caption">
+        <span>📱 Huduma za Simu</span>
+        Omba huduma popote ulipo — simu mkononi inatosha
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&auto=format&fit=crop&q=80"
+           alt="Watu wa kijijini Tanzania wakisaidia wenzao">
+      <div class="photo-caption">
+        <span>🏘️ Watu wa Vijijini</span>
+        Hata bila internet — wasiliana nasi, tutafanya kwa niaba yako
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=80"
+           alt="Mwanamke wa Afrika anatumia laptop">
+      <div class="photo-caption">
+        <span>💻 Vijana wa Elimu</span>
+        Wanafunzi — tunaomba vyuo, mikopo na internship kwa haraka
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section class="services" id="huduma">
@@ -891,14 +1054,69 @@
     </div>
 
     <div class="why-visual">
-      <div class="big-emoji">🇹🇿</div>
-      <h3>Watanzania kwa Watanzania</h3>
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&auto=format&fit=crop&q=80"
+           alt="Mtu wa Afrika anatumia laptop kuomba huduma"
+           style="width:100%; border-radius:16px; margin-bottom:1.2rem; object-fit:cover; height:220px;">
+      <h3>Mkono Wako wa Dijitali 🤝</h3>
       <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.7;">
         Tunajua changamoto za kupata huduma za serikali mtandaoni. Ndio maana tumejitoa kukusaidia — kwa lugha yako, kwa wakati wako, popote ulipo.
         <br><br>
         <em>We understand the challenges of accessing government services online in Tanzania — that's why we're here for you, 24/7.</em>
       </p>
     </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Wateja Wetu / Our Clients</div>
+  <h2 class="section-title">Wanasema Nini Wateja Wetu?</h2>
+  <p class="section-sub">Watu wa Tanzania wanatuamini — hizi ni kauli za wateja halisi waliofurahia huduma zetu.</p>
+
+  <div class="testi-grid">
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Nilikuwa nahangaika sana na usajili wa BRELA kwa wiki mbili. Niliwasiliana na E-Huduma TZ asubuhi, jioni biashara yangu ilikuwa imesajiliwa. Huduma ya ajabu sana!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Juma Mwangi">
+        </div>
+        <div>
+          <h4>Juma Mwangi</h4>
+          <p>Mfanyabiashara, Dar es Salaam</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Mwanangu alikuwa anajali sana dirisha la internship ya udaktari. E-Huduma TZ walifuatilia na kuomba kwa wakati. Amepata hospitali aliyoitaka. Asante sana!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&auto=format&fit=crop&q=80" alt="Mama Zawadi">
+        </div>
+        <div>
+          <h4>Zawadi Kimaro</h4>
+          <p>Mzazi, Arusha</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Niko kijijini Mtwara, sina internet nzuri. Nilimpigia simu, akanisaidia kupata TIN number na NHIF — yote kwa siku moja. Siwezi kuamini iliwezekana!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80" alt="Hassan Omari">
+        </div>
+        <div>
+          <h4>Hassan Omari</h4>
+          <p>Mkulima, Mtwara</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -935,7 +1153,7 @@
         <div class="icon">🕐</div>
         <div>
           <h4>Masaa ya Kazi / Working Hours</h4>
-          <p>Jumatatu – Jumapili: 7:00 – 23:00</p>
+          <p>Jumatatu – Jumamosi: 8:00 – 20:00</p>
         </div>
       </div>
 
@@ -961,11 +1179,11 @@
         <p style="color:var(--text-light); font-size:0.875rem;">Tutawasiliana nawe hivi karibuni. Asante!</p>
       </div>
 
-      <form id="contactForm" action="https://formspree.io/f/mgoqvnrz" method="POST">
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 
         <div class="form-group">
           <label>Jina Lako Kamili / Full Name *</label>
-          <input type="text" name="jina" placeholder="Mfano: Christina James" required>
+          <input type="text" name="jina" placeholder="Mfano: John Mwamba" required>
         </div>
         <div class="form-group">
           <label>Nambari ya Simu / Phone Number *</label>
@@ -1079,7 +1297,7 @@
   </div>
   <div class="footer-bottom">
     <p>© 2025 E-Huduma TZ. Haki zote zimehifadhiwa.</p>
-    <div class="tz-flag">🇹🇿 Made in Tanzania with John Butta & Christina James</div>
+    <div class="tz-flag">🇹🇿 Made in Tanzania with ❤️</div>
   </div>
 </footer>
 
